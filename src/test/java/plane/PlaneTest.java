@@ -10,12 +10,12 @@ public class PlaneTest {
 
     @Before
     public void before() {
-        plane = new Plane(PlaneType.BOEING747);
+        plane = new Plane(PlaneType.BOEING_747);
     }
 
     @Test
     public void hasType(){
-        assertEquals(PlaneType.BOEING747, plane.getType());
+        assertEquals(PlaneType.BOEING_747, plane.getType());
     }
 
     @Test

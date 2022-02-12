@@ -9,13 +9,14 @@ import plane.PlaneType;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class FlightTest {
     Flight flight;
     Pilot pilot;
     ArrayList<CabinCrew> cabinCrew;
     Plane plane;
+    Passenger passenger;
 
     @Before
     public void before(){
@@ -25,6 +26,7 @@ public class FlightTest {
         cabinCrew.add(new CabinCrew("Rebecca", Rank.PURSER));
         plane = new Plane(PlaneType.CESSNA_172);
         flight = new Flight(pilot, cabinCrew, plane, "ZT141", "FRA", "EDI", "12:30");
+        passenger = new Passenger("Andrew", 2);
     }
 
     @Test
@@ -65,5 +67,24 @@ public class FlightTest {
     @Test
     public void passengersStartAtZero(){
         assertEquals(0, flight.countPassengers());
+    }
+
+    @Test
+    public void canGetAvailableSeats(){
+        assertEquals(4, flight.countSeats());
+    }
+
+    @Test
+    public void canBookPassenger(){
+        assertTrue(flight.bookPassenger(passenger));
+    }
+
+    @Test
+    public void cannotBookPassengerIfFull(){
+        flight.bookPassenger(passenger);
+        flight.bookPassenger(passenger);
+        flight.bookPassenger(passenger);
+        flight.bookPassenger(passenger);
+        assertFalse(flight.bookPassenger(passenger));
     }
 }

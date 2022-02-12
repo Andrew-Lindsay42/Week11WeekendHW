@@ -71,7 +71,7 @@ public class FlightTest {
 
     @Test
     public void canGetAvailableSeats(){
-        assertEquals(4, flight.countSeats());
+        assertEquals(4, flight.countAvailableSeats());
     }
 
     @Test

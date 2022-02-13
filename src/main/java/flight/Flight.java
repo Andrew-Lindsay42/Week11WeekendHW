@@ -19,7 +19,7 @@ public class Flight {
     private String destination;
     private String departureAirport;
     private LocalDateTime departureTime;
-    private ArrayList<Integer> assignedSeats;
+    private ArrayList<Integer> freeSeats;
 
     public Flight(Pilot pilot, ArrayList<CabinCrew> cabinCrew, Plane plane, String flightNumber, String destination, String departureAirport, LocalDateTime departureTime) {
         this.pilot = pilot;
@@ -30,7 +30,10 @@ public class Flight {
         this.destination = destination;
         this.departureAirport = departureAirport;
         this.departureTime = departureTime;
-        this.assignedSeats = new ArrayList<>();
+        this.freeSeats = new ArrayList<>(plane.getCapacity());
+        for (int i = 1; i <= plane.getCapacity(); i++) {
+            freeSeats.add(i);
+        }
     }
 
     public Pilot getPilot() {
@@ -61,8 +64,8 @@ public class Flight {
         return departureTime;
     }
 
-    public ArrayList<Integer> getAssignedSeats() {
-        return assignedSeats;
+    public ArrayList<Passenger> getPassengers() {
+        return passengers;
     }
 
     public int countPassengers() {
@@ -70,30 +73,23 @@ public class Flight {
     }
 
     public int countAvailableSeats() {
-        return plane.getCapacity() - countPassengers();
+        return freeSeats.size();
     }
 
     public Integer createNewSeatNum(){
-        Integer newSeat = null;
-        boolean flag = true;
+        int randomIndex = new Random().nextInt(freeSeats.size());
+        Integer newSeat = freeSeats.get(randomIndex);
+        freeSeats.remove(randomIndex);
 
-        while (flag) {
-            Integer randomSeat = new Random().nextInt(getPlane().getCapacity() + 1);
-            if (!assignedSeats.contains(randomSeat)) {
-                flag = false;
-                newSeat = randomSeat;
-                assignedSeats.add(newSeat);
-            }
-        }
         return newSeat;
     }
 
     public boolean bookPassenger(Passenger passenger){
         if (countAvailableSeats() > 0){
-        passengers.add(passenger);
-        passenger.setFlight(this);
-        passenger.setSeatNumber(createNewSeatNum());
-        return true;
+            passenger.setFlight(this);
+            passenger.setSeatNumber(createNewSeatNum());
+            passengers.add(passenger);
+            return true;
         }
         return false;
     }

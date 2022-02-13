@@ -2,6 +2,7 @@ package flight;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import people.CabinCrew;
 import people.Passenger;
@@ -101,11 +102,17 @@ public class FlightTest {
     @Test
     public void givesEachPassengerUniqueSeat(){
         flight.bookPassenger(passenger);
+        passenger = new Passenger("Andrew", 2);
         flight.bookPassenger(passenger);
+        passenger = new Passenger("Andrew", 2);
         flight.bookPassenger(passenger);
+        passenger = new Passenger("Andrew", 2);
         flight.bookPassenger(passenger);
-        ArrayList<Integer> seatList = flight.getAssignedSeats();
-        Set<Integer> seatListNoDupes = new HashSet<>(seatList);
+        ArrayList<Integer> seatList = new ArrayList<>();
+        for (Passenger passenger : flight.getPassengers()) {
+            seatList.add(passenger.getSeatNumber());
+        }
+        HashSet<Integer> seatListNoDupes = new HashSet<>(seatList);
         assertEquals(seatList.size(), seatListNoDupes.size());
     }
 }

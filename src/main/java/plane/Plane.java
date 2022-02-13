@@ -19,4 +19,8 @@ public class Plane {
     public int getWeight(){
         return planeType.getWeight();
     }
+
+    public double getBaggageSpace() {
+        return getWeight() / 2.0;
+    }
 }

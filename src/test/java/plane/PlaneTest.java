@@ -28,4 +28,9 @@ public class PlaneTest {
         assertEquals(183500, plane.getWeight());
     }
 
+    @Test
+    public void canGetBaggageSpace(){
+        assertEquals(91750, plane.getBaggageSpace(), 0);
+    }
+
 }

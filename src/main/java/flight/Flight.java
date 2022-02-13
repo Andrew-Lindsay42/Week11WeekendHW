@@ -7,6 +7,7 @@ import plane.Plane;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Flight {
 
@@ -18,6 +19,7 @@ public class Flight {
     private String destination;
     private String departureAirport;
     private LocalDateTime departureTime;
+    private ArrayList<Integer> assignedSeats;
 
     public Flight(Pilot pilot, ArrayList<CabinCrew> cabinCrew, Plane plane, String flightNumber, String destination, String departureAirport, LocalDateTime departureTime) {
         this.pilot = pilot;
@@ -28,6 +30,7 @@ public class Flight {
         this.destination = destination;
         this.departureAirport = departureAirport;
         this.departureTime = departureTime;
+        this.assignedSeats = new ArrayList<>();
     }
 
     public Pilot getPilot() {
@@ -58,6 +61,10 @@ public class Flight {
         return departureTime;
     }
 
+    public ArrayList<Integer> getAssignedSeats() {
+        return assignedSeats;
+    }
+
     public int countPassengers() {
         return passengers.size();
     }
@@ -66,10 +73,26 @@ public class Flight {
         return plane.getCapacity() - countPassengers();
     }
 
+    public Integer createNewSeatNum(){
+        Integer newSeat = null;
+        boolean flag = true;
+
+        while (flag) {
+            Integer randomSeat = new Random().nextInt(getPlane().getCapacity() + 1);
+            if (!assignedSeats.contains(randomSeat)) {
+                flag = false;
+                newSeat = randomSeat;
+                assignedSeats.add(newSeat);
+            }
+        }
+        return newSeat;
+    }
+
     public boolean bookPassenger(Passenger passenger){
         if (countAvailableSeats() > 0){
         passengers.add(passenger);
         passenger.setFlight(this);
+        passenger.setSeatNumber(createNewSeatNum());
         return true;
         }
         return false;

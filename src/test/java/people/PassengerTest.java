@@ -11,8 +11,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class PassengerTest {
     Flight flight;
@@ -48,8 +47,19 @@ public class PassengerTest {
     }
 
     @Test
+    public void seatNumberStartsNull(){
+        assertNull(passenger.getSeatNumber());
+    }
+
+    @Test
     public void whenBookedOnFlightPropertyAssigned(){
         flight.bookPassenger(passenger);
         assertEquals(flight, passenger.getFlight());
+    }
+
+    @Test
+    public void whenBookedOnFlightGivenSeat(){
+        flight.bookPassenger(passenger);
+        assertNotNull(passenger.getSeatNumber());
     }
 }

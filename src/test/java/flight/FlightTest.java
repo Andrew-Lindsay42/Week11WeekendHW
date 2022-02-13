@@ -14,6 +14,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -94,5 +96,12 @@ public class FlightTest {
         flight.bookPassenger(passenger);
         flight.bookPassenger(passenger);
         assertFalse(flight.bookPassenger(passenger));
+    }
+
+    @Test
+    public void givesEachPassengerUniqueSeat(){
+        ArrayList<Integer> seatList = flight.getAssignedSeats();
+        Set<Integer> seatListNoDupes = new HashSet<>(seatList);
+        assertEquals(seatList.size(), seatListNoDupes.size());
     }
 }

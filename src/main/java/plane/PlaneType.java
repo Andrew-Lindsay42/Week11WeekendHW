@@ -5,7 +5,7 @@ public enum PlaneType {
     ATR_72(72, 13500),
     BOEING_747(524, 183500),
     BOEING_737(170, 41410),
-    CESSNA_172(4, 757),
+    CESSNA_172(4, 758),
     CONCORDE(100, 78700),
     EMBRAER_190(98, 27750),
     MD_11(350, 128800);

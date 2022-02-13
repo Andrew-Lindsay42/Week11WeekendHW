@@ -22,7 +22,7 @@ public class FlightManagerTest {
 
     @Before
     public void before(){
-        flightManager = new FlightManager;
+        flightManager = new FlightManager();
         pilot = new Pilot("Greg", Rank.CAPTAIN, "ABC123");
         cabinCrew = new ArrayList<>();
         plane = new Plane(PlaneType.CESSNA_172);
@@ -39,11 +39,11 @@ public class FlightManagerTest {
     public void canCalculateWeightAlreadyBooked(){
         flight.bookPassenger(passenger);
         flight.bookPassenger(passenger);
-        assertEquals(189.5, flight.baggageBooked(), 0.0);
+        assertEquals(189.5, flightManager.baggageBooked(flight), 0.0);
     }
 
     @Test
     public void canCalculateWeightRemaining(){
-        assertEquals(379.0, flight.baggageRemaining(), 0.0);
+        assertEquals(379.0, flightManager.baggageRemaining(flight), 0.0);
     }
 }

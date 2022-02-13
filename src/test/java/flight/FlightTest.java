@@ -100,6 +100,10 @@ public class FlightTest {
 
     @Test
     public void givesEachPassengerUniqueSeat(){
+        flight.bookPassenger(passenger);
+        flight.bookPassenger(passenger);
+        flight.bookPassenger(passenger);
+        flight.bookPassenger(passenger);
         ArrayList<Integer> seatList = flight.getAssignedSeats();
         Set<Integer> seatListNoDupes = new HashSet<>(seatList);
         assertEquals(seatList.size(), seatListNoDupes.size());

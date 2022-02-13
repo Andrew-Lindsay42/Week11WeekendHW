@@ -1,3 +1,6 @@
+package flight;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import people.CabinCrew;
@@ -37,18 +40,18 @@ public class FlightManagerTest {
 
     @Test
     public void canCalculateWeightPerPassenger(){
-        assertEquals(94.75, flightManager.baggagePerPassenger(flight), 0.0);
+        Assert.assertEquals(94.75, flightManager.baggagePerPassenger(flight), 0.0);
     }
 
     @Test
     public void canCalculateWeightAlreadyBooked(){
         flight.bookPassenger(passenger);
         flight.bookPassenger(passenger);
-        assertEquals(189.5, flightManager.baggageBooked(flight), 0.0);
+        Assert.assertEquals(189.5, flightManager.baggageBooked(flight), 0.0);
     }
 
     @Test
     public void canCalculateWeightRemaining(){
-        assertEquals(379.0, flightManager.baggageRemaining(flight), 0.0);
+        Assert.assertEquals(379.0, flightManager.baggageRemaining(flight), 0.0);
     }
 }

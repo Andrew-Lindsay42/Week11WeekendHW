@@ -1,3 +1,5 @@
+package flight;
+
 import people.CabinCrew;
 import people.Passenger;
 import people.Pilot;
@@ -67,6 +69,7 @@ public class Flight {
     public boolean bookPassenger(Passenger passenger){
         if (countAvailableSeats() > 0){
         passengers.add(passenger);
+        passenger.setFlight(this);
         return true;
         }
         return false;

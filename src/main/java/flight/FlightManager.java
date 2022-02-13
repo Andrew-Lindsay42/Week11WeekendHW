@@ -1,3 +1,5 @@
+package flight;
+
 public class FlightManager {
     public FlightManager(){
     }

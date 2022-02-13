@@ -1,3 +1,6 @@
+package flight;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import people.CabinCrew;
@@ -36,47 +39,47 @@ public class FlightTest {
 
     @Test
     public void hasPilot(){
-        assertEquals(pilot, flight.getPilot());
+        Assert.assertEquals(pilot, flight.getPilot());
     }
 
     @Test
     public void hasCabinCrew(){
-        assertEquals(cabinCrew, flight.getCabinCrew());
+        Assert.assertEquals(cabinCrew, flight.getCabinCrew());
     }
 
     @Test
     public void hasPlane(){
-        assertEquals(plane, flight.getPlane());
+        Assert.assertEquals(plane, flight.getPlane());
     }
 
     @Test
     public void hasFlightNumber(){
-        assertEquals("ZT141", flight.getFlightNumber());
+        Assert.assertEquals("ZT141", flight.getFlightNumber());
     }
 
     @Test
     public void hasDestination(){
-        assertEquals("FRA", flight.getDestination());
+        Assert.assertEquals("FRA", flight.getDestination());
     }
 
     @Test
     public void hasDepartureAirport(){
-        assertEquals("EDI", flight.getDepartureAirport());
+        Assert.assertEquals("EDI", flight.getDepartureAirport());
     }
 
     @Test
     public void hasDepartureTime(){
-        assertEquals(departureTime, flight.getDepartureTime());
+        Assert.assertEquals(departureTime, flight.getDepartureTime());
     }
 
     @Test
     public void passengersStartAtZero(){
-        assertEquals(0, flight.countPassengers());
+        Assert.assertEquals(0, flight.countPassengers());
     }
 
     @Test
     public void canGetAvailableSeats(){
-        assertEquals(4, flight.countAvailableSeats());
+        Assert.assertEquals(4, flight.countAvailableSeats());
     }
 
     @Test
